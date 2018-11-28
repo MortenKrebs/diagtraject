@@ -5,13 +5,13 @@ Authors@R: person("Morten Dybdahl", "Krebs", email = "morten.dybdahl.krebs@regio
 Description: Implementation of Sequence Analysis to mining of diagnostic trajectories .
 Depends:
     R (>= 3.2.2),
-    TraMineR,
-    TraMineRextras,
-    fpc,
-    WeightedCluster,
-    parallel,
-    WGCNA,
-    data.table
+    TraMineR#,
+    #TraMineRextras,
+    #fpc,
+    #WeightedCluster,
+    #parallel,
+    #WGCNA,
+    #data.table
 Suggets:
 License: What license is it under?
 Encoding: UTF-8
