@@ -78,10 +78,12 @@ dist.obs <- seqdist(perm.seq2, method = "HAM", sm = sub.cost2)
 ## Computing Probability weighted Hamming distance in censored states:
 dist.mis <- mis.cost(perm.seq, cens.type="right",sum_to_1 = F, 
 method = "prob",sm = "CONSTANT",smooth = F)
-dist <- dist.obs + as.matrix(dist.mis[[1]])
+dist <- dist.obs + as.matrix(dist.mis$dist)
 
 ## Obtaining imputed probabilities
-dist.mis <- mis.cost(perm.seq, cens.type="right",sum_to_1 = F, 
+prob <- mis.cost(perm.seq, cens.type="right",sum_to_1 = F, 
 method = "prob",smooth = F, prob.out=T)
+
+
 }
 
