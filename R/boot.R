@@ -1,5 +1,5 @@
 #' Clusterwise cluster stability - Weighted 
-#' Modification \code{\link{fpc::clusterboot}} to weight channels in each permutation
+#' Modification \code{\link{fpc::clusterboot}} to weight channels in each permutation, to sva
 #' @param data n x p dataframe or dissimilarity matrix (if distances = TRUE) or list of dissimilarity matrices (if multichannel = TRUE)  
 #' @param indvec optional vector of indices if data is a dissimilarity matrix or  \code{'dist'} object repressenting only unique observations.
 #' @param dt.m optional list of dataframe with data needed to weight channels (if multichannel = TRUE)  
@@ -36,6 +36,35 @@ disthclustCBI <-  function (dmatrix, k, cut = "number", method, weights=NULL, no
 }
 
 
+
+mdshclustCBI <-  function (dmatrix, k, k.mds, cut = "number", method, weights=NULL, noisecut = 0, 
+                           ...) 
+{
+  n <- nrow(as.matrix(dmatrix))
+  mds <- cmdscale(dmatrix,k = k.mds)
+  c1 <- fastcluster::hclust(dist(mds), method = method, members=weights)
+  noise <- FALSE
+  if (cut == "number") 
+    partition <- cutree(c1, k = k)
+  else partition <- cutree(c1, h = k)
+  nc <- max(partition)
+  clsizes <- numeric(0)
+  for (i in 1:nc) clsizes[i] <- sum(partition == i)
+  ncn <- sum(clsizes > noisecut)
+  if (ncn < nc) {
+    noise <- TRUE
+    newcln <- (1:nc)[clsizes > noisecut]
+    nc <- ncn + 1
+    newpart <- rep(nc, n)
+    for (i in 1:ncn) newpart[partition == newcln[i]] <- i
+    partition <- newpart
+  }
+  cl <- list()
+  for (i in 1:nc) cl[[i]] <- partition == i
+  out <- list(result = c1, noise = noise, nc = nc, nccl = ncn, 
+              clusterlist = cl, partition = partition, clustermethod = "hclust")
+  out
+}
 
 
 
@@ -80,8 +109,11 @@ clusterbootw <- function (data, indvec=NULL, dt.m=NULL, multichannel=F, B = 100,
   bootresult <- jitterresult <- noiseresult <- bojitresult <- subsetresult <- matrix(0, 
                                                                                      nrow = c1$nc, ncol = B)
   lbootresult <- rep(0,c1$nc)
-  if(is.null(indvec)) lbootpartition <- rep(0,length(c1$partition)) else {lbootpartition <- rep(0,length(indvec))
-                                                                          lbootpartition_uni <-rep(0,length(c1$partition)) }
+  if(is.null(indvec))  {
+    lbootpartition <- rep(0,length(c1$partition)) 
+    lbootpartition_uni <-rep(0,length(c1$partition)) }else {
+      lbootpartition <- rep(0,length(indvec))
+      lbootpartition_uni <-rep(0,length(c1$partition)) }
   bootpartition <-subsetpartition <- matrix(0, 
                           nrow = length(lbootpartition), ncol = B)
   bootpartition_uni <-subsetpartition_uni <- matrix(0, 
@@ -175,7 +207,8 @@ clusterbootw <- function (data, indvec=NULL, dt.m=NULL, multichannel=F, B = 100,
         mdata[noiseind, ] <- jnoise
         bsamp <- (1:n)[!noiseind]
       }
-      bc1 <- clustermethod(as.dist(mdata), weights=b_members$w, ...)
+      if(!is.null(members)){
+      bc1 <- clustermethod(as.dist(mdata), weights=b_members$w, ...)}else{    bc1 <- clustermethod(as.dist(mdata), ...)}
       print(head(bc1$partition))
       if (showplots) {
         if (distances) 
@@ -227,10 +260,10 @@ clusterbootw <- function (data, indvec=NULL, dt.m=NULL, multichannel=F, B = 100,
         print(head(maxgamma))
         if (bootmethod[l] == "boot") 
         {cat("c1: ")
-         cat(paste(length(c1$partition[indvec])))
+         cat(paste(length(c1$partition)))
          cat("\n")
          cat("bc1: ")
-         cat(paste(length(bc1$partition[bsamp_corr])))
+         cat(paste(length(bc1$partition)))
          cat("\n")
          cat("bsamp: ")
          cat(paste(length(bsamp_ind)))
@@ -238,9 +271,11 @@ clusterbootw <- function (data, indvec=NULL, dt.m=NULL, multichannel=F, B = 100,
          cat("ncases: ")
          cat(paste(length(ncases)))
          lbootresult[j] <- maxgamma
-         
+         if(!is.null(indvec)) {
          lbootpartition[bsamp_ind] <- bc1$partition[bsamp_corr]
-         lbootpartition_uni[bsamp_unique] <- bc1$partition}
+         lbootpartition_uni[bsamp_unique] <- bc1$partition}else{
+           lbootpartition[bsamp] <- bc1$partition
+         }}
         if (bootmethod[l] == "subset") {
           lbootresult[j] <- maxgamma
           lbootpartition[bsamp_ind] <- bc1$partition[bsamp_corr]
