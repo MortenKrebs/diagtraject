@@ -4,10 +4,22 @@
 \alias{mis.cost}
 \title{Imputation of missing states}
 \usage{
-mis.cost(seq_mis, cens.type = c("right", "left", "both"), last = NULL,
-  trans.rates = NULL, smooth = F, sum_to_1 = T, MM = T,
-  sm = "CONSTANT", method = "prob", prob.out = F, diag = F,
-  resol.comp = NULL, resol.ratio = 1, mc.cores = NULL)
+mis.cost(
+  seq_mis,
+  cens.type = c("right", "left", "both"),
+  last = NULL,
+  trans.rates = NULL,
+  smooth = F,
+  sum_to_1 = T,
+  MM = T,
+  sm = "CONSTANT",
+  method = "prob",
+  prob.out = F,
+  diag = F,
+  resol.comp = NULL,
+  resol.ratio = 1,
+  mc.cores = NULL
+)
 }
 \arguments{
 \item{seq_mis}{object of class \code{'stslist'} as created by \code{\link[TraMineR:seqdef]{seqdef}}.}
@@ -84,6 +96,4 @@ dist <- dist.obs + as.matrix(dist.mis$dist)
 prob <- mis.cost(perm.seq, cens.type="right",sum_to_1 = F, 
 method = "prob",smooth = F, prob.out=T)
 
-
 }
-

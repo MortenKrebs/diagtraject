@@ -3,10 +3,17 @@
 \name{disthclustCBI}
 \alias{disthclustCBI}
 \title{Clusterwise cluster stability - Weighted 
-Modification \code{\link{fpc::clusterboot}} to weight channels in each permutation}
+Modification \code{\link{fpc::clusterboot}} to weight channels in each permutation, to sva}
 \usage{
-disthclustCBI(dmatrix, k, cut = "number", method, weights = NULL,
-  noisecut = 0, ...)
+disthclustCBI(
+  dmatrix,
+  k,
+  cut = "number",
+  method,
+  weights = NULL,
+  noisecut = 0,
+  ...
+)
 }
 \arguments{
 \item{data}{n x p dataframe or dissimilarity matrix (if distances = TRUE) or list of dissimilarity matrices (if multichannel = TRUE)}
@@ -17,6 +24,5 @@ disthclustCBI(dmatrix, k, cut = "number", method, weights = NULL,
 }
 \description{
 Clusterwise cluster stability - Weighted 
-Modification \code{\link{fpc::clusterboot}} to weight channels in each permutation
+Modification \code{\link{fpc::clusterboot}} to weight channels in each permutation, to sva
 }
-

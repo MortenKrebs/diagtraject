@@ -5,9 +5,19 @@
 \title{Dissimilarity between multichannel sequence object - save combined sub.matrix
 Modification \code{\link{TraMineR::seqdistmc}} to save combined sub.matrix}
 \usage{
-seqdistmc2(channels, method, norm = FALSE, indel = 1, sm = NULL,
-  with.missing = FALSE, full.matrix = TRUE, link = "sum", cval = 2,
-  miss.cost = 2, cweight = NULL)
+seqdistmc2(
+  channels,
+  method,
+  norm = FALSE,
+  indel = 1,
+  sm = NULL,
+  with.missing = FALSE,
+  full.matrix = TRUE,
+  link = "sum",
+  cval = 2,
+  miss.cost = 2,
+  cweight = NULL
+)
 }
 \arguments{
 \item{channels}{list of stslist objects}
@@ -20,4 +30,3 @@ seqdistmc2(channels, method, norm = FALSE, indel = 1, sm = NULL,
 Dissimilarity between multichannel sequence object - save combined sub.matrix
 Modification \code{\link{TraMineR::seqdistmc}} to save combined sub.matrix
 }
-

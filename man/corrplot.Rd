@@ -4,24 +4,64 @@
 \alias{corrplot}
 \title{Modification of \code{corrplot::corrplot} by \code{https://github.com/taiyun}, that enable square size to repressent p-values.}
 \usage{
-corrplot(corr, method = c("circle", "square", "ellipse", "number", "shade",
-  "color", "pie"), type = c("full", "lower", "upper"), add = FALSE,
-  col = NULL, full_col = TRUE, bg = "white", title = "",
-  is.corr = TRUE, diag = TRUE, outline = FALSE, mar = c(0, 0, 0, 0),
-  addgrid.col = NULL, addCoef.col = NULL, addCoefasPercent = FALSE,
+corrplot(
+  corr,
+  method = c("circle", "square", "ellipse", "number", "shade", "color", "pie",
+    "p.square"),
+  type = c("full", "lower", "upper"),
+  add = FALSE,
+  col = NULL,
+  full_col = TRUE,
+  bg = "white",
+  title = "",
+  is.corr = TRUE,
+  diag = TRUE,
+  outline = FALSE,
+  mar = c(0, 0, 0, 0),
+  addgrid.col = NULL,
+  addCoef.col = NULL,
+  addCoefasPercent = FALSE,
   order = c("original", "AOE", "FPC", "hclust", "alphabet"),
-  hclust.method = c("complete", "ward", "ward.D", "ward.D2", "single",
-  "average", "mcquitty", "median", "centroid"), addrect = NULL,
-  rect.col = "black", rect.lwd = 2, tl.pos = NULL, tl.cex = 1,
-  tl.col = "red", tl.offset = 0.4, tl.srt = 90, cl.pos = NULL,
-  cl.lim = NULL, cl.length = NULL, cl.cex = 0.8, cl.ratio = 0.15,
-  cl.align.text = "c", cl.offset = 0.5, number.cex = 1, number.font = 2,
-  number.digits = NULL, addshade = c("negative", "positive", "all"),
-  shade.lwd = 1, shade.col = "white", p.mat = NULL, sig.level = 0.05,
-  insig = c("pch", "p-value", "blank", "n", "label_sig"), pch = 4,
-  pch.col = "black", pch.cex = 3, plotCI = c("n", "square", "circle",
-  "rect"), lowCI.mat = NULL, uppCI.mat = NULL, na.label = "?",
-  na.label.col = "black", win.asp = 1, ...)
+  hclust.method = c("complete", "ward", "ward.D", "ward.D2", "single", "average",
+    "mcquitty", "median", "centroid"),
+  addrect = NULL,
+  rect.col = "black",
+  rect.lwd = 2,
+  tl.pos = NULL,
+  tl.cex = 1,
+  tl.col = "red",
+  tl.offset = 0.4,
+  tl.srt = 90,
+  cl.pos = NULL,
+  cl.lim = NULL,
+  cl.length = NULL,
+  cl.cex = 0.8,
+  cl.ratio = 0.15,
+  cl.align.text = "c",
+  cl.offset = 0.5,
+  number.cex = 1,
+  number.font = 2,
+  number.digits = NULL,
+  addshade = c("negative", "positive", "all"),
+  shade.lwd = 1,
+  shade.col = "white",
+  p.mat = NULL,
+  sig.level = 0.05,
+  p.min = NULL,
+  insig = c("pch", "p-value", "blank", "n", "label_sig"),
+  pch = 4,
+  pch.col = "black",
+  pch.cex = 3,
+  ssl.pos = "n",
+  ssl.lev = 6,
+  plotCI = c("n", "square", "circle", "rect"),
+  lowCI.mat = NULL,
+  uppCI.mat = NULL,
+  na.label = "?",
+  na.label.col = "black",
+  win.asp = 1,
+  ...
+)
 }
 \arguments{
 \item{corr}{The correlation matrix to visualize, must be square if
@@ -198,6 +238,13 @@ coefficients(only valid when \code{insig} is \code{"pch"}). See
 
 \item{pch.cex}{The cex of pch (only valid when \code{insig} is \code{"pch"}).}
 
+\item{ssl.pos}{Character or logical, position of square size legend; If character,
+it must be one of \code{"r"} or \code{"b"}. Default \code{"n"}
+ means don't draw square size legend.}
+
+\item{ssl.lev}{Integer indicating number of levels in draw square size legend. Default \code{6}
+levels.}
+
 \item{plotCI}{Character, method of ploting confidence interval. If
 \code{"n"}, don't plot confidence interval. If "rect", plot rectangles
 whose upper side means upper bound and lower side means lower bound,
@@ -246,13 +293,6 @@ Row- and column names of the input matrix are used as labels rendered
   by one of the following characters: \code{:}, \code{=} or \code{$}.
   For example \code{":alpha + beta"}.
 }
-\author{
-Taiyun Wei (weitaiyun@gmail.com)
-
-Viliam Simko (viliam.simko@gmail.com)
-
-Michael Levy (michael.levy@healthcatalyst.com)
-}
 \references{
 Michael Friendly (2002).
 \emph{Corrgrams: Exploratory displays for correlation matrices}.
@@ -269,4 +309,10 @@ Function \code{plotcorr}  in the \code{ellipse} package and
   Package \code{seriation} offered more methods to reorder matrices, such as
   ARSA, BBURCG, BBWRCG, MDS, TSP, Chen and so forth.
 }
+\author{
+Taiyun Wei (weitaiyun@gmail.com)
 
+Viliam Simko (viliam.simko@gmail.com)
+
+Michael Levy (michael.levy@healthcatalyst.com)
+}
