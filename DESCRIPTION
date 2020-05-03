@@ -6,12 +6,7 @@ Description: Implementation of Sequence Analysis to mining of diagnostic traject
 Depends:
     R (>= 3.2.2),
     TraMineR,
-    TraMineRextras,
-    #fpc,
-    #WeightedCluster,
-    #parallel,
-    #WGCNA,
-    #data.table
+    TraMineRextras
 Suggets:
 License: What license is it under?
 Encoding: UTF-8
