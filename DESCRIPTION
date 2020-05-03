@@ -7,11 +7,11 @@ Depends:
     R (>= 3.2.2),
     TraMineR,
     TraMineRextras,
-    fpc,
-    WeightedCluster,
-    parallel,
-    WGCNA,
-    data.table
+    #fpc,
+    #WeightedCluster,
+    #parallel,
+    #WGCNA,
+    #data.table
 Suggets:
 License: What license is it under?
 Encoding: UTF-8
