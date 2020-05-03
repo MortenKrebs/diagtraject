@@ -12,6 +12,7 @@
 #' @param miss.cost
 #' @param cweight
 #' 
+#' @export
 
 seqdistmc2 <- function (channels, method, norm = FALSE, indel = 1, sm = NULL, 
           with.missing = FALSE, full.matrix = TRUE, link = "sum", 

@@ -489,7 +489,7 @@ corrplot <- function(corr,
     ifelse(grepl("^[:=$]", s), parse(text = substring(s, 2)), s)
   }
   
-  newrownames <- sapply(
+    newrownames <- sapply(
     rownames(corr)[(n + 1 - n2):(n + 1 - n1)], expand_expression)
   
   newcolnames <- sapply(

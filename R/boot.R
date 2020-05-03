@@ -3,8 +3,7 @@
 #' @param data n x p dataframe or dissimilarity matrix (if distances = TRUE) or list of dissimilarity matrices (if multichannel = TRUE)  
 #' @param indvec optional vector of indices if data is a dissimilarity matrix or  \code{'dist'} object repressenting only unique observations.
 #' @param dt.m optional list of dataframe with data needed to weight channels (if multichannel = TRUE)  
-#' 
-#' 
+#' @export
 
 
 disthclustCBI <-  function (dmatrix, k, cut = "number", method, weights=NULL, noisecut = 0, 

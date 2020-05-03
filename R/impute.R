@@ -56,7 +56,7 @@
 #' prob <- mis.cost(perm.seq, cens.type="right",sum_to_1 = F, 
 #' method = "prob",smooth = F, prob.out=T)
 #' 
-#' 
+#' @export
 
 
 
