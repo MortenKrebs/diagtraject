@@ -121,8 +121,8 @@ mis.cost <- function(seq_mis, cens.type = c("right","left","both"),
 #       t_max <- c((mis_l[j]:lmax)[-c(1)],lmax)#,lmax)  # seq j imputed lj+1 to lmax
 #       if(mis_l[j]==lmax) t_max <- c(t_max,lmax)
       t_max <- c((mis_l[j]:lmax)[-c(1)])#,lmax)  #positions in tr to be imputed for seq j
-if(mis_l[j]==lmax) t_max2 <- t_min else t_max2 <- seq(2,min(t_max)-1)[-c(1)]
-stjt <- unlist(seqd_l[j, t_max2]) 
+ if(mis_l[j]==lmax) t_max2 <- t_min else if(min(t_max)==3) t_max2 <- NULL else t_max2 <- seq(2,min(t_max)-1)[-c(1)]
+if (!is.null( t_max2)) stjt <- unlist(seqd_l[j, t_max2]) else stjt <- NULL# vector of observed states
 
   #t_max2 <- t_min[seq(2,length(t_min)-length(t_max),l=length(t_min)-length(t_max))]
 # 
