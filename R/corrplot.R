@@ -247,6 +247,32 @@
 #' 
 #' @import graphics grDevices stats
 #' @export
+#'
+#'@examples 
+#'install.packages("corrplot")
+#'library(corrplot)
+#'devtools::install_github("MortenKrebs/diagtraject")
+#'
+#'mat <- matrix(rnorm(100),10,10)
+#
+#'rownames(mat) <- letters[1:10]
+#'colnames(mat3) <- letters[11:20]
+#'
+#'col <- colorRampPalette(c("#67001F", "#B2182B", "#FFFFFF", "#2166AC", "#053061")[5:1])(20)
+#'
+#'pm3 <- matrix(runif(100),10,10)
+#'pm3[pm3<1e-6] <- 1e-6
+#'
+#'corrplot(mat3, is.corr=FALSE, p.mat=pm3,
+#'         method="p.square", insig="pch", col=col,
+#'         sig.level=0.05/56, pch="*", pch.cex=1, mar= c(4,4,4,0),
+#'         cl.ratio=0.25, cl.align.text="l", cl.lim=c(-5,5), 
+#'         tl.col="black", bg="#fffffc",ssl.pos = "r",ssl.lev=6,full_col=F,cl.pos = "r")
+#'text(9.5,9,labels = "log(HR)")
+#'mtext("Second Diagnosis",side=3,line=1)
+#'mtext("First Diagnosis",side=2,line=1)
+#'
+
 corrplot <- function(corr,
                      method = c("circle", "square", "ellipse", "number", "shade", "color", "pie","p.square"),
                      type = c("full", "lower", "upper"), add = FALSE,
