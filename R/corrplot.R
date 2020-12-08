@@ -256,14 +256,14 @@
 #'mat <- matrix(rnorm(100),10,10)
 #
 #'rownames(mat) <- letters[1:10]
-#'colnames(mat3) <- letters[11:20]
+#'colnames(mat) <- letters[11:20]
 #'
 #'col <- colorRampPalette(c("#67001F", "#B2182B", "#FFFFFF", "#2166AC", "#053061")[5:1])(20)
 #'
-#'pm3 <- matrix(runif(100),10,10)
-#'pm3[pm3<1e-6] <- 1e-6
+#'pm <- matrix(runif(100),10,10)
+#'pm[pm<1e-6] <- 1e-6
 #'
-#'corrplot(mat3, is.corr=FALSE, p.mat=pm3,
+#'corrplot(mat, is.corr=FALSE, p.mat=pm,
 #'         method="p.square", insig="pch", col=col,
 #'         sig.level=0.05/56, pch="*", pch.cex=1, mar= c(4,4,4,0),
 #'         cl.ratio=0.25, cl.align.text="l", cl.lim=c(-5,5), 
