@@ -58,6 +58,6 @@ lengths <- factor(seqlength(perm.seq))
 
 plot(levels(lengths),
      sapply(levels(lengths), function(x) 
-         cor(c(dist.full[lengths==x,lengths=="70"])-c(dist.obs[lengths==x,lengths=="70"]),c(as.matrix(dist.mis$dist)[lengths==x,lengths=="70"]))),xlab="Sequence Length", ylab="Correlation", main="Correlation between difference censored and non-censored dissimilarities to \n non-imputed sequnences and imputed dissimalities to non-imputed sequnences")
+         cor(c(dist.full[lengths==x,lengths=="70"])-c(dist.obs[lengths==x,lengths=="70"]),c(as.matrix(dist.mis$dist)[lengths==x,lengths=="70"]))),xlab="Sequence Length", ylab="Correlation", main="Correlation between difference between censored and non-censored dissimilarity to \n non-imputed sequnences and imputed dissimality to non-imputed sequnences")
 ```
-![diagtraject](https://user-images.githubusercontent.com/28724260/109793410-e51ceb80-7c14-11eb-8879-52f31b15ffbc.png)
+![diagtraject](https://user-images.githubusercontent.com/28724260/109793861-7d1ad500-7c15-11eb-9298-d40073d8c320.png)
